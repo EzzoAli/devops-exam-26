@@ -44,7 +44,7 @@ jobs:
       - name: Build SAM application
         run: |
           cd sam_lambda/image-gen-26  # Naviger til riktig katalog
-          sam build --cached --parallel
+          sam build --no-cached --parallel
 
       # Distribuer SAM-applikasjonen
       - name: Deploy SAM application
