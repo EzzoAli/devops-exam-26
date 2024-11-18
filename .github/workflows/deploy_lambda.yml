@@ -44,10 +44,10 @@ jobs:
       - name: Build SAM application
         run: |
           cd sam_lambda/image-gen-26  # Naviger til riktig katalog
-          sam build --no-cached --parallel
+          sam build --cached --parallel
 
       # Distribuer SAM-applikasjonen
       - name: Deploy SAM application
         run: |
           cd sam_lambda/image-gen-26 
-          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset
+          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset --force-upload
