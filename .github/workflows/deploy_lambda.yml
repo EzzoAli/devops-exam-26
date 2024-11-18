@@ -50,4 +50,4 @@ jobs:
       - name: Deploy SAM application
         run: |
           cd sam_lambda/image-gen-26 
-          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset --force-upload
+          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset 
