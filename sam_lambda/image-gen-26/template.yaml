@@ -1,3 +1,4 @@
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
@@ -13,7 +14,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: app.lambda_handler
-      Runtime: python3.8  # Adjusted to match your Python version
+      Runtime: python3.8 
       CodeUri: hello_world
       Environment:
         Variables:
@@ -43,3 +44,6 @@ Outputs:
   GenerateImageFunctionIamRole:
     Description: "Implicit IAM Role created for Generate Image function"
     Value: !GetAtt GenerateImageFunctionRole.Arn
+    
+
+#komentar for å teste action igjen
