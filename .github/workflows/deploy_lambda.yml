@@ -1,0 +1,51 @@
+name: Deploy SAM Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Sjekk ut koden fra repoet
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Sett opp Python for SAM CLI
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      # Installer AWS SAM CLI
+      - name: Install AWS SAM CLI
+        run: |
+          sudo pip install aws-sam-cli==1.87.0
+
+      # Installer avhengigheter
+      - name: Install dependencies
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
+      # Konfigurer AWS legitimasjon
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      # Bygg SAM-applikasjonen
+      - name: Build SAM application
+        run: |
+          sam build --cached --parallel
+
+      # Distribuer SAM-applikasjonen
+      - name: Deploy SAM application
+        run: |
+          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM
