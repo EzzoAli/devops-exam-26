@@ -244,3 +244,13 @@ Drøft og vurder implikasjonene i lys av følgende DevOps-prinsipper:
 I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med tanke på de nevnte DevOps-aspektene.
 
 ## LYKKE TIL OG HA DET GØY MED OPPGAVEN!
+
+
+
+##oppgave 1
+### Oppgave 1a: AWS Lambda og API Gateway
+- **API Gateway URL**: https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
+### Oppgave 1b: GitHub Actions Workflow for SAM Deploy
+- **Lenke til workflow**: [Se workflow-kjøring](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
+
+
