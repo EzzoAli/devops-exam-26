@@ -254,3 +254,5 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **Lenke til workflow**: [Se workflow-kjøring](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
 
 
+## oppgave 2
+### requierments:Terraform v1.9.8
