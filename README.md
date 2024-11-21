@@ -264,12 +264,6 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **generert bilde: 26/images/titan_1821139106.png**
 
 ## Task 2B: GitHub Actions Workflow for Terraform
-
-### Description
-This workflow automates Terraform deployments:
-- **Non-Main Branches**: Runs `terraform plan` to preview changes.
-- **Main Branch**: Runs `terraform apply` to apply changes to the AWS infrastructure.
-
 ### Deliverables
 - **Terraform Apply Workflow (main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
 - **Terraform Plan Workflow (non-main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945148343/job/33297312886
