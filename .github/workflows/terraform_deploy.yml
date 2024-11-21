@@ -32,13 +32,16 @@ jobs:
       # Initialize Terraform
       - name: Terraform Init
         run: terraform init
+        working-directory: infra  
 
       # Terraform Plan for non-main branches
       - name: Terraform Plan
         if: github.ref != 'refs/heads/main'
         run: terraform plan
+        working-directory: infra  
 
       # Terraform Apply for main branch
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
+        working-directory: infra  
