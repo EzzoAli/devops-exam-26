@@ -34,14 +34,14 @@ jobs:
         run: terraform init
         working-directory: infra  # Ensure Terraform files are located here
 
-      # Terraform Plan for non-main branches
+      # Force Terraform Plan (always run)
       - name: Terraform Plan
-        if: contains(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
+        if: true  # Forces this step to always run
         run: terraform plan
         working-directory: infra  # Specify the directory for Terraform configuration files
 
-      # Terraform Apply for main branch
+      # Skip Terraform Apply (temporarily)
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
+        if: false  # Prevent apply from running for testing purposes
         run: terraform apply -auto-approve
         working-directory: infra  # Only run on main branch to apply infrastructure changes
