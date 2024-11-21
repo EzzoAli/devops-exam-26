@@ -262,3 +262,15 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **Lambda Function ARN**: `arn:aws:lambda:eu-west-1:244530008913:function:image-gen-lambda-26`
 - **SQS Queue URL**: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`
 - **generert bilde: 26/images/titan_1821139106.png**
+
+## Task 2B: GitHub Actions Workflow for Terraform
+
+### Description
+This workflow automates Terraform deployments:
+- **Non-Main Branches**: Runs `terraform plan` to preview changes.
+- **Main Branch**: Runs `terraform apply` to apply changes to the AWS infrastructure.
+
+### Deliverables
+- **Terraform Apply Workflow (main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
+- **Terraform Plan Workflow (non-main branch)**:
+- **SQS Queue URL**: [https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26](https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26)
