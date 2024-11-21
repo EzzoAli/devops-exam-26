@@ -247,12 +247,16 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 
 
 
-##oppgave 1
+## oppgave 1
 ### Oppgave 1a: AWS Lambda og API Gateway
 - **API Gateway URL**: https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
 ### Oppgave 1b: GitHub Actions Workflow for SAM Deploy
 - **Lenke til workflow**: [Se workflow-kjøring](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
 
-
 ## oppgave 2
-### requierments:Terraform v1.9.8
+### Requierments
+- **Terraform Version**: v1.9.8
+
+### Deliverables
+- **Lambda Function ARN**: `arn:aws:lambda:eu-west-1:244530008913:function:image-gen-lambda-26`
+- **SQS Queue URL**: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`
