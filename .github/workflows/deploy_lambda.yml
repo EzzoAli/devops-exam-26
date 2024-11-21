@@ -1,38 +1,27 @@
-name: Deploy SAM Application
+name: Terraform Deploy
 
 on:
   push:
     branches:
       - main
+      - '**'  # Trigger for all branches
 
 jobs:
-  deploy:
+  terraform:
     runs-on: ubuntu-latest
 
     steps:
-      # Sjekk ut koden fra repoet
-      - name: Checkout repository
+      # Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Sett opp Python for SAM CLI
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v5
+      # Set up Terraform CLI
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
         with:
-          python-version: 3.8
+          terraform_version: 1.9.8
 
-      # Installer AWS SAM CLI
-      - name: Install AWS SAM CLI
-        run: |
-          sudo pip install aws-sam-cli==1.87.0
-
-      # Installer avhengigheter
-      - name: Install dependencies
-        run: |
-          python3 -m venv .venv
-          source .venv/bin/activate
-          pip install -r requirements.txt
-
-      # Konfigurer AWS legitimasjon
+      # Configure AWS Credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -40,14 +29,23 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      # Bygg SAM-applikasjonen
-      - name: Build SAM application
-        run: |
-          cd sam_lambda/image-gen-26  # Naviger til riktig katalog
-          sam build --cached --parallel
+      # Debug the branch to check what GitHub evaluates as the current branch
+      - name: Debug Branch
+        run: echo "Branch: ${{ github.ref }}"
 
-      # Distribuer SAM-applikasjonen
-      - name: Deploy SAM application
-        run: |
-          cd sam_lambda/image-gen-26 
-          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset 
+      # Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infra  # Ensure Terraform files are located here
+
+      # Terraform Plan for non-main branches
+      - name: Terraform Plan
+        if: contains(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
+        run: terraform plan
+        working-directory: infra  # Specify the directory for Terraform configuration files
+
+      # Terraform Apply for main branch
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve
+        working-directory: infra  # Only run on main branch to apply infrastructure changes
