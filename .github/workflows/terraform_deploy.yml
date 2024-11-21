@@ -29,19 +29,23 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
+      # Debug the branch to check what GitHub evaluates as the current branch
+      - name: Debug Branch
+        run: echo "Branch: ${{ github.ref }}"
+
       # Initialize Terraform
       - name: Terraform Init
         run: terraform init
-        working-directory: infra  
+        working-directory: infra  # Ensure Terraform files are located here
 
       # Terraform Plan for non-main branches
       - name: Terraform Plan
-        if: github.ref != 'refs/heads/main'
+        if: contains(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
         run: terraform plan
-        working-directory: infra  
+        working-directory: infra  # Specify the directory for Terraform configuration files
 
       # Terraform Apply for main branch
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
-        working-directory: infra  
+        working-directory: infra  # Only run on main branch to apply infrastructure changes
