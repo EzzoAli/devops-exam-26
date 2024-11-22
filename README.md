@@ -266,5 +266,5 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 ## Task 2B: GitHub Actions Workflow for Terraform
 ### Deliverables
 - **Terraform Apply Workflow (main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
-- **Terraform Plan Workflow (non-main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945148343/job/33297312886
+- **Terraform Plan Workflow (non-main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173
 - **SQS Queue URL**: [https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26](https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26)
