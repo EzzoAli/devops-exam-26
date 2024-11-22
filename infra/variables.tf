@@ -9,3 +9,8 @@ variable "candidate_number" {
   type        = string
   default     = "26"
 }
+
+variable "alarm_email" {
+  description = "Email address to receive CloudWatch alarm notifications"
+  type        = string
+}
