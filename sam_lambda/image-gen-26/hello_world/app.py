@@ -26,7 +26,7 @@ def lambda_handler(event, context):
 
         # Generate random seed and S3 path
         seed = random.randint(0, 2147483647)
-        s3_image_path = f"{candidate_number}/titan_{seed}.png"
+        s3_image_path = f"{candidate_number}/generated_images/titan_{seed}.png"
 
         # Bedrock model payload
         native_request = {
