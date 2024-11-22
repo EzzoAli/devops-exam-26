@@ -78,12 +78,12 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
 }
 
 resource "aws_lambda_function" "image_gen_lambda" {
-  filename         = "lambda.zip" # Replace with the actual zip file
+  filename         = "lambda.zip" 
   function_name    = "image-gen-lambda-26"
   role             = aws_iam_role.lambda_execution_role.arn
   handler          = "lambda_sqs.lambda_handler"
   runtime          = "python3.8"
-  timeout          = 60  # Increase timeout to 30 seconds
+  timeout          = 60 
   memory_size      = 512
 
   environment {
