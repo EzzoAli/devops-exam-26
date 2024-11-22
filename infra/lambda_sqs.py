@@ -1,8 +1,8 @@
-import base64
-import boto3
-import json
-import random
 import os
+import random
+import boto3
+import base64
+import json
 
 # AWS Clients
 bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
@@ -11,17 +11,17 @@ s3_client = boto3.client("s3")
 # Constants
 MODEL_ID = "amazon.titan-image-generator-v1"
 BUCKET_NAME = os.environ["BUCKET_NAME"]
+CANDIDATE_NUMBER = os.environ["CANDIDATE_NUMBER"]
 
 def lambda_handler(event, context):
-    # Loop through all SQS records in the event
     for record in event["Records"]:
         try:
             # Extract the SQS message body
             prompt = record["body"]
             seed = random.randint(0, 2147483647)
 
-            # Hard-code the S3 path
-            s3_image_path = f"26/images/titan_{seed}.png"  # Hard-coded path to 26/images/
+            # S3 path using CANDIDATE_NUMBER
+            s3_image_path = f"{CANDIDATE_NUMBER}/images/titan_{seed}.png"
 
             # Prepare the request for image generation
             native_request = {
