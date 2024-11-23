@@ -43,5 +43,5 @@ jobs:
       # Terraform Apply for main branch
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve
+        run: terraform apply -var="alarm_email=alez001@student.kristiania.no" -auto-approve
         working-directory: infra  

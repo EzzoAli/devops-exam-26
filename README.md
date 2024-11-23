@@ -53,7 +53,8 @@ https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
 
 Oppgave 2 A & B
 
-- **Lenke til terraform plan workflow (non-main branch)**: [GitHub Actions Workflow for Terraform plan](https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272)
+- **Lenke til terraform plan workflow (non-main branch)**: [GitHub Actions Workflow for Terraform plan](https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173)
+- 
 - **Lenke til terraform apply workflow (main branch)**: [GitHub Actions Workflow for Terraform apply](https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272)
 ```
 https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
