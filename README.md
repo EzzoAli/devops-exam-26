@@ -6,14 +6,13 @@
 - `pip install -r requirements.txt`
 - Terraform v1.9.8
 
+### En Tabell av alle leveransene ligger neders i siden
+
 
 ##oppgave 1
 
 ### Oppgave 1a: AWS Lambda og API Gateway
-- **API Gateway URL**:
-```
-https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
-```
+
 
 ### Denne komandoen er for å finne filstien til SAM-applicationen
 ```bash
@@ -40,9 +39,15 @@ curl -X POST https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generat
 ### Her er url-en til PGR301-couch-explorers/26/images for å verifisere at et bilde blir generert
 [PGR301-couch-explorers/26/images](https://eu-west-1.console.aws.amazon.com/s3/buckets/pgr301-couch-explorers?region=eu-west-1&bucketType=general&prefix=26/images/&showversions=false)
 
+### leveranse 1a:
+
+```
+https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
+```
 
 
-### 1B:
+### Oppgave 1b: GitHub Actions Workflow for SAM Deploy
+- **Lenke til workflow**: [Klikk for å se GitHub Actions Workflow for SAM Deploy](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
 
 
 
