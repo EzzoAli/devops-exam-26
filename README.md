@@ -6,17 +6,29 @@
 - `pip install -r requirements.txt`
 - Terraform v1.9.8
 
-### Filsti 
+### finn filstien
 - 
 ```bash
 cd devops-exam-26/sam_lambda/image-gen-26
+```
+
+### bygg SAM-applikasjonen
 
 ```bash
 cd sam build
+```
 
+### Deploy SAM-applikasjonen til AWS
 ```bash
 cd sam deploy --guided
+```
 
+### Generer et bilde med dette Http endepunktet
+```bash
+curl -X POST https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/ \
+-H "Content-Type: application/json" \
+-d '{"prompt": "Vintage Paris Trip"}'
+```
 
 
 
