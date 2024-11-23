@@ -1,17 +1,22 @@
 # PGR301 EKSAMEN 2024 Couch Explorers - Bærekraftig turisme fra sofakroken ! 
 # kandidat nr. 26
 
-
-### requierments:
-- python version 3.8
-- pip install -r requirements.txt
+### Requierments:
+- Python version 3.8
+- `pip install -r requirements.txt`
 - Terraform v1.9.8
-- 
 
-### filsti 
-- python filen ligger i:
+### Filsti 
+- 
 ```bash
 cd devops-exam-26/sam_lambda/image-gen-26
+
+```bash
+cd sam build
+
+```bash
+cd sam deploy --guided
+
 
 
 
