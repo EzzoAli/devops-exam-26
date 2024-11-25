@@ -46,8 +46,13 @@ jobs:
           cd sam_lambda/image-gen-26  # Naviger til riktig katalog
           sam build --cached --parallel
 
-      # Distribuer SAM-applikasjonen
-      - name: Deploy SAM application
+      # Deploy SAM application
+      - name: Deploy SAM Application
         run: |
-          cd sam_lambda/image-gen-26 
-          sam deploy --stack-name image-gen-26-stack --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset 
+          cd sam_lambda/image-gen-26
+          sam deploy \
+            --stack-name image-gen-26-stack \
+            --region eu-west-1 \
+            --capabilities CAPABILITY_IAM \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset
