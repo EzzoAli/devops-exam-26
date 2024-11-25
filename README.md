@@ -43,23 +43,58 @@ curl -X POST https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generat
 ```
 https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
 ```
-
+### leveranse 1b:
 
 ### Oppgave 1b: GitHub Actions Workflow for SAM Deploy
-- **Lenke til workflow**: [Klikk for å se GitHub Actions Workflow for SAM Deploy](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
+- **Lenke til workflow**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154
 
 
 
 # Oppgave 2 A & B
 
-### Klikk på den blå teksten for å se GitHub Actions workflow av en non-main branch
+### Denne komandoen er for å finne filstien til infra
+```bash
+cd devops-exam-26/infra
+```
+
+### konfiguere backend og provider
+```
+terraform init
+```
+
+### vertifisere at koden er skrevet riktig:
+```
+terraform validate
+```
+
+### se hva som vil bli opprettet
+```
+terraform plan
+```
+
+### opprette applicationen, bekreft yes hvis den ber om det
+```
+terraform apply
+```
+
+### test applicationen SQS:
+```
+aws sqs send-message \
+    --queue-url https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26 \
+    --message-body '{
+        "title": "Sunset Safari",
+        "description": "Place me in a jeep on an African savanna with lions and elephants in the background under a golden sunset. Use an analog 1980s photo effect with warm color tones, and give it a grainy texture for an authentic safari experience."
+    }' \
+    --output json
+```
+
+### leveranse oppgave 2:
 
 - **Lenke til terraform plan workflow (non-main branch)**: 
-- [GitHub Actions Workflow for Terraform plan](https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173)
+- https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173
 
-### Klikk på den blå teksten for å se GitHub Actions workflow av en main branch
 - **Lenke til terraform apply workflow (main branch)**: 
-- [GitHub Actions Workflow for Terraform apply](https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272)
+- https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
 
 ### Her er min SQS Queue URL
 ```
