@@ -96,7 +96,7 @@ aws sqs send-message \
 - **Lenke til terraform apply workflow (main branch)**: 
 - https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
 
-### Her er min SQS Queue URL
+### SQS Queue URL for image-gen-queue-26
 ```
 https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
 ```
