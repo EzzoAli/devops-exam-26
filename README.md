@@ -240,7 +240,9 @@ https://www.withcoherence.com/articles/serverless-monitoring-7-best-practices-20
 
 https://medium.com/@jorgenlybeck/serverless-et-paradigmeskifte-i-systemutvikling-556a24fb9bd6 (oppgave 1 og 3)
 
-
+https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/?utm_source=chatgpt.com (oppgave 4)
+https://www.simform.com/blog/devops-best-practices-for-serverless/?utm_source=chatgpt.com (oppgave 4)
+https://devops.com/running-serverless-in-production-7-best-practices-for-devops/?utm_source=chatgpt.com (oppgave 4)
 
 
 
