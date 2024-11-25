@@ -297,28 +297,11 @@ https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 
 
 
-## Tabell for leveranse
-
-| Oppgave       | Leveranser krav |                                           |                                                  
-| **Oppgave 1** | HTTP Endepunkt  | https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/     |
-|               |GitHub Actions workflow|  https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154     |
-| **Oppgave 2** | github actions workflow main|Leveranse 1      |                                            
-|               | github actions workflow ikke main      |
-|               | SQS-kø URL      |
-|---------------|-----------------|---------------------------------------------|
-| **Oppgave 3** | beskrivelse av taggstrategi |                                                  |
-|               | Leveranse 2                                                  |
-|               | Leveranse 3                                                  |
-|---------------|-----------------|---------------------------------------------|
-| **Oppgave 4** | ingen krav har blitt git| bilde av at alarmen er satt opp og fungerer ligger i oppgave 4 over denne tabellen                                                       |
-|---------------|-----------------|---------------------------------------------|
-| **Oppgave 5** | Leveranse 1      |
-|               | Leveranse 2      |
-|               | Leveranse 3      |
-|               | Leveranse 4      |
+## Tabell for leveranse krav
 
 
 | Oppgave      | Leveransekrav                                         | Leveranse                                                                          |
+|--------------|-------------------------------------------------------|------------------------------------------------------------------------------------|
 | Oppgave 1a   | HTTP Endepunkt                                        | https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/        |
 | Oppgave 1b   | SAM-application Lenke til GitHub Actions workflow     | https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154 |
 | Oppgave 2    | Lenke til Terraform Apply workflow (main branch)      | https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272 |
@@ -329,10 +312,3 @@ https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 |              |                                                       | SQS URL: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`     |
 |              | Lenke til GitHub Actions workflow                     | https://github.com/EzzoAli/devops-exam-26/actions/runs/11965712974                 |
 
-
-
-
-| Oppgave 2    | Lambda Function ARN                                                                               | `arn:aws:lambda:eu-west-1:244530008913:function:image-gen-lambda-26`                                |
-|              | SQS-Kø URL                                                                                           | [SQS URL](https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26)                      |
-|              | Generert bilde                                                                                     | `26/images/titan_1821139106.png`                                                                    |
-|--------------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
