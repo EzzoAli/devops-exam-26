@@ -162,9 +162,10 @@ devops-exam-26/infra/terraform.tfvars
 
 ```bash
 aws lambda update-event-source-mapping \
-  --uuid 581928cf-635d-443f-b3b5-2ef20d491f97 \
+  --uuid <your-event-source-mapping-uuid> \
   --no-enabled \
   --output json
+
 ```
 ### test applicationen SQS:
 ```
@@ -177,13 +178,14 @@ aws sqs send-message \
     --output json
 ```
 
-### slå på event sourch mapping:
+### når testen er ferdig slå på event sourch mapping:
 
 ```bash
 aws lambda update-event-source-mapping \
-  --uuid 581928cf-635d-443f-b3b5-2ef20d491f97 \
+  --uuid <your-event-source-mapping-uuid> \
   --enabled \
   --output json
+
 ```
 
 
