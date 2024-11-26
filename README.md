@@ -365,7 +365,7 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 
 - MAAYAN, G,D. (2024.26.21) 5 Serverless Challenges of DevOps Teams and How to Overcome Them. DevOps.com. https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/
 - Dhaduk, D. (2022.08.10). DevOps Best Practices for Serverless. Simform Blog. https://www.simform.com/blog/devops-best-practices-for-serverless/
-- MAAYAN, G,D. (2023, February 15). Running Serverless in Production: 7 Best Practices for DevOps. DevOps.com. https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
+- MAAYAN, G,D. (2023,02.08). Running Serverless in Production: 7 Best Practices for DevOps. DevOps.com. https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 
 
 
