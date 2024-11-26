@@ -6,7 +6,7 @@
 - `pip install -r requirements.txt`
 - Terraform v1.9.8
 
-### En Tabell av alle leveransekravene ligger nederst siden siden
+### En Tabell av alle leveransekravene ligger i bunnen av readme filen
 
 
 
