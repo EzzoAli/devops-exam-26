@@ -158,11 +158,11 @@ devops-exam-26/infra/terraform.tfvars
 ```
 
 
-### slå av event sourch mapping:
+### slå av event sourch mappingved å endre på <xxx> i en periode for å sikre at sqs står fasti "message availabe":
 
 ```bash
 aws lambda update-event-source-mapping \
-  --uuid <your-event-source-mapping-uuid> \
+  --uuid <xxx> \
   --no-enabled \
   --output json
 
@@ -178,11 +178,11 @@ aws sqs send-message \
     --output json
 ```
 
-### når testen er ferdig slå på event sourch mapping:
+### når testen er ferdig slå på event sourch mapping ved å endre på <xxx> med din uuid:
 
 ```bash
 aws lambda update-event-source-mapping \
-  --uuid <your-event-source-mapping-uuid> \
+  --uuid <xxx> \
   --enabled \
   --output json
 
