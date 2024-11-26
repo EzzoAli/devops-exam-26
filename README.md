@@ -194,17 +194,17 @@ aws lambda update-event-source-mapping \
 
 ## Serverless i CI/CD
 
-Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse utrullinger (Harness, n.d.). Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter (Harness, n.d.).
+Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse utrullinger (Dewan, 2024). Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter (Dewan, 2024).
 
 ### Fordeler:
 - **Automatisering og forenkling**:  
-  Mikrotjenestenes modulære design støtter isolert testing og utrulling, noe som sikrer stabilitet for andre deler av systemet (Lybeck, 2018).
+  Serverless forbedrer automatisering ved å integrere med CI/CD-pipelines for å utløse bygg, tester og utrullinger ved kodeendringer(Dewan, 2024).
 - **Raske iterasjoner**:  
-  Automatisert testing og utrulling i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen (Harness, n.d.).
+  Automatisert testing og utrulling i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen (Dewan, 2024).
 
 ### Ulemper:
 - **Pipeline-tilpasning**:  
-  Tilpasning av CI/CD-pipelines for serverless kan introdusere utfordringer, spesielt når det gjelder integrering med hendelsesdrevne, skyspesifikke plattformer (Harness, n.d.).
+  Tilpasning av CI/CD-pipelines for serverless kan introdusere utfordringer, spesielt når det gjelder integrering med hendelsesdrevne, skyspesifikke plattformer (Dewan, 2024).
 - **Risiko for hot patching**:  
   Eksisterende CI/CD-pipelines kan ofte gjenbrukes med minimale justeringer for containerbaserte mikrotjenester (Lybeck, 2018).
 
@@ -222,9 +222,7 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
 
 ### Ulemper:
 - **Operasjonell belastning**:  
-  Å opprettholde separate CI/CD-pipelines for flere mikrotjenester øker kompleksiteten og krever robust koordinering (Harness, n.d., Lybeck, 2018).  
-- **Begrenset skalerbarhet**:  
-  Skalering av mikrotjenesteinfrastruktur er mindre dynamisk sammenlignet med serverless, noe som potensielt kan bremse CI/CD-prosesser under høy etterspørsel (Lybeck, 2018).
+  Å opprettholde separate CI/CD-pipelines for flere mikrotjenester øker kompleksiteten og krever robust koordinering (Dewan, 2024, Lybeck, 2018).  
 
 ---
 
@@ -239,10 +237,7 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
   Plattformspesifikke verktøy som Serverless Framework og AWS Lambda gir omfattende metrikker, spor, logger og feilmeldinger(Serverless Framework, n.d.). Distribuerte sporingsverktøy som AWS X-Ray og OpenTelemetry gir innsikt i forsinkelser og samhandling mellom tjenester(Faruqui, 2024
 ).
 - **Enkel oppsett**:  
-  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor(Serverless Framework, n.d.). Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler aggregering av kortvarige funksjonslogger(Faruqui, 2024
-).
-- **Kostnadseffektivitet gjennom prøvetaking**:  
-  Automatisk prøvetaking av sporingsdata optimaliserer overvåkningskostnader, spesielt for funksjoner med høy trafikk(Serverless Framework, n.d.).
+  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor(Serverless Framework, n.d.). Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler aggregering av kortvarige funksjonslogger(Faruqui, 2024).
 
 #### Utfordringer:
 - **Økt kompleksitet i logging og feilsøking**:  
@@ -251,9 +246,6 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
   Applikasjoner deles opp i mange små funksjoner, noe som kan skape utfordringer i distribuert logging. Overvåkning krever separate oppsett for hundrevis av funksjoner(Serverless Framework, n.d.).
 - **Overvåkning av "cold starts"**:  
   "Cold starts" introduserer latens som påvirker brukeropplevelsen. Spesifikke verktøy må brukes for å spore og måle disse forsinkelsene(Faruqui, 2024).
-- **Avhengighet av plattformspesifikke verktøy**:  
-  Plattformverktøy kan være vanskelig å integrere med eksterne løsninger og migrasjon til andre plattformer(Serverless Framework, n.d., Faruqui, 2024).
-
 ---
 
 ### Mikrotjenester Arkitektur
@@ -278,35 +270,35 @@ Mikrotjenester er modulære og uavhengige, noe som gir mer strukturert overvåkn
 
 ## Serverless
 
-Serverless utmerker seg med dynamisk skalering og kostnadseffektivitet, noe som gjør det ideelt for applikasjoner med varierende arbeidsbelastninger (Harness, n.d.). Modellen introduserer imidlertid utfordringer som uforutsigbare kostnader og kaldstartlatens (Harness, n.d.).
+Serverless utmerker seg med dynamisk skalering og kostnadseffektivitet, noe som gjør det ideelt for applikasjoner med varierende arbeidsbelastninger (Dewan, 2024). Modellen introduserer imidlertid utfordringer som uforutsigbare kostnader og kaldstartlatens (Dewan, 2024).
 
 ### Fordeler:
 - **Dynamisk skalering**:  
-  Serverless justerer seg automatisk til endringer i arbeidsbelastning, noe som sikrer effektiv ressursbruk uten manuell inngripen (Harness, n.d., Lybeck, 2018).
+  Serverless justerer seg automatisk til endringer i arbeidsbelastning, noe som sikrer effektiv ressursbruk uten manuell inngripen (Dewan, 2024, Lybeck, 2018).
 - **Kostnadseffektivitet**:  
-  Betal-for-bruk-prising eliminerer utgifter til inaktiv infrastruktur, noe som tilpasser kostnadene til faktisk bruk (Harness, n.d., Lybeck, 2018).
+  Betal-for-bruk-prising eliminerer utgifter til inaktiv infrastruktur, noe som tilpasser kostnadene til faktisk bruk (Dewan, 2024, Lybeck, 2018).
 
 ### Ulemper:
 - **Uforutsigbare kostnader**:  
-  Autoskalering kan føre til svingende utgifter, noe som utfordrer utviklere til å holde budsjettet under kontroll (Harness, n.d.).
+  Autoskalering kan føre til svingende utgifter, noe som utfordrer utviklere til å holde budsjettet under kontroll (Dewan, 2024).
 - **Kaldstartlatens**:  
-  Serverless-funksjoner kan oppleve forsinkelser under oppstart, noe som påvirker ytelsen for tidskritiske oppgaver (Harness, n.d.).
+  Serverless-funksjoner kan oppleve forsinkelser under oppstart, noe som påvirker ytelsen for tidskritiske oppgaver (Dewan, 2024).
   
 ---
 
 ## Mikrotjenester
 
-Mikrotjenester gir presis kontroll over ressursallokering og forutsigbare driftskostnader, men de er mindre smidige i skalering sammenlignet med serverless-arkitekturer (Harness, n.d., Lybeck, 2018).
+Mikrotjenester gir presis kontroll over ressursallokering og forutsigbare driftskostnader, men de er mindre smidige i skalering sammenlignet med serverless-arkitekturer (Dewan, 2024, Lybeck, 2018).
 
 ### Fordeler:
 - **Kontrollert ressursallokering**:  
-  Ressurser kan tilpasses hver tjenestes behov, noe som optimaliserer ytelse og kostnader (Harness, n.d., Lybeck, 2018).
+  Ressurser kan tilpasses hver tjenestes behov, noe som optimaliserer ytelse og kostnader (Dewan, 2024, Lybeck, 2018).
 - **Forutsigbare kostnader**:  
-  Forhåndskonfigurert infrastruktur sikrer konsistente utgifter og unngår uforutsigbare serverless-kostnader (Harness, n.d.).
+  Forhåndskonfigurert infrastruktur sikrer konsistente utgifter og unngår uforutsigbare serverless-kostnader (Dewan, 2024).
 
 ### Ulemper:
 - **Manuell skalering**:  
-  Skalering av mikrotjenester krever manuell innsats eller kompleks orkestrering, noe som gjør dem mindre responsive til plutselige trafikkøkninger (Harness, n.d., Lybeck, 2018).
+  Skalering av mikrotjenester krever manuell innsats eller kompleks orkestrering, noe som gjør dem mindre responsive til plutselige trafikkøkninger (Dewan, 2024, Lybeck, 2018).
 - **Høyere infrastrukturkostnader**:  
   Å opprettholde infrastruktur for kontinuerlig kjørende tjenester kan føre til høyere grunnkostnader sammenlignet med serverless (Lybeck, 2018).
 
@@ -364,7 +356,7 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 
 
 ### referanser:
-- Harness. (n.d.). CI/CD for Serverless. Harness Blog. https://www.harness.io/blog/cicd-for-serverless
+- Dewan, A.(2024.19.01), 2024. CI/CD for Serverless. Harness Blog. https://www.harness.io/blog/cicd-for-serverless
 
 - Lybeck, J. (2018, September 24). Serverless: Et paradigmeskifte i systemutvikling. Medium. https://medium.com/@jorgenlybeck/serverless-et-paradigmeskifte-i-systemutvikling-556a24fb9bd6
 
