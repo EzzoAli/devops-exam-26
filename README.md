@@ -109,7 +109,7 @@ cd devops-exam-26/java_sqs_client
 mvn package
 ```
 
-###sette variablen for SQS-queue url og kjør jar filen:
+### sette variablen for SQS-queue url og kjør jar filen:
 ```bash
 export SQS_QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
 java -jar target/imagegenerator-0.0.1-SNAPSHOT.jar "Me on top of K2"
