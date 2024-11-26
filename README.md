@@ -314,19 +314,19 @@ I en serverless-tilnærming blir mange operasjonelle oppgaver overført til skyl
 
 ### Fordeler:
 - **Redusert operasjonell belastning**:  
-  I serverless tar skyleverandøren ansvar for infrastrukturhåndtering, inkludert serverklargjøring, vedlikehold og skalering. Dette frigjør DevOps-team til å fokusere på forretningslogikk og applikasjonsytelse (DevOps.com, n.d., DevOps.com, 2023).
+  I serverless tar skyleverandøren ansvar for infrastrukturhåndtering, inkludert serverklargjøring, vedlikehold og skalering. Dette frigjør DevOps-team til å fokusere på forretningslogikk og applikasjonsytelse (Maayan, 2024, Maayan, 2023).
 - **Granulært ansvar**:  
-  Serverless-arkitektur oppmuntrer team til å håndtere individuelle funksjoner med minimal nødvendige roller, i tråd med prinsippet om minst privilegium. Dette forbedrer sikkerheten og isolerer problemer til spesifikke funksjoner (DevOps.com, 2023).
+  Serverless-arkitektur oppmuntrer team til å håndtere individuelle funksjoner med minimal nødvendige roller, i tråd med prinsippet om minst privilegium. Dette forbedrer sikkerheten og isolerer problemer til spesifikke funksjoner (Maayan, 2023).
 - **Bedret samarbeid og CI/CD-integrasjon**:  
-   Automatisering i serverless-pipelines lar utviklere konsentrere seg om å utvikle funksjonalitet i stedet for å administrere infrastruktur. Dette tilrettelegger for en modell med delt eierskap på tvers av team (Simform, n.d.).
+   Automatisering i serverless-pipelines lar utviklere konsentrere seg om å utvikle funksjonalitet i stedet for å administrere infrastruktur. Dette tilrettelegger for en modell med delt eierskap på tvers av team (Dhabuk, 2022).
 
 ### Ulemper:
 - **Kompleks rolle- og tillatelseshåndtering**:  
-   Å tildele riktige roller til mange serverless-funksjoner skaper kompleksitet og øker risikoen for feilkonfigurasjoner, noe som kan føre til sikkerhetsproblemer eller ineffektivitet (DevOps.com, 2023).
+   Å tildele riktige roller til mange serverless-funksjoner skaper kompleksitet og øker risikoen for feilkonfigurasjoner, noe som kan føre til sikkerhetsproblemer eller ineffektivitet (Maayan, 2023).
 - **Utfordringer med kortvarige funksjoner**:  
-  Den tilstandsfrie og kortvarige naturen til serverless-funksjoner kompliserer feilsøking og krever stor avhengighet av sentraliserte overvåkningsverktøy, noe som legger til et ekstra lag av ansvar for observabilitet (DevOps.com, n.d., Simform, n.d.).
+  Den tilstandsfrie og kortvarige naturen til serverless-funksjoner kompliserer feilsøking og krever stor avhengighet av sentraliserte overvåkningsverktøy, noe som legger til et ekstra lag av ansvar for observabilitet (Maayan, 2024, Dhabuk, 2022).
 - **Uforutsigbare kostnader**:  
-  Selv om serverless eliminerer faste infrastrukturkostnader, kan dynamisk skalering gjøre kostnadsstyring utfordrende. DevOps-team må ta eierskap for å overvåke og optimalisere bruken for å unngå budsjettoverskridelser (DevOps.com, n.d., DevOps.com, 2023).
+  Selv om serverless eliminerer faste infrastrukturkostnader, kan dynamisk skalering gjøre kostnadsstyring utfordrende. DevOps-team må ta eierskap for å overvåke og optimalisere bruken for å unngå budsjettoverskridelser (Maayan, 2024, Maayan, 2023).
 
 ---
 
@@ -336,17 +336,17 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 
 ### Fordeler:
 - **Klare eierskapsgrenser**:  
-  Mikrotjenestenes modulære natur gjør det mulig for team å ha tydelig definert eierskap over spesifikke tjenester, noe som gjør det enklere å administrere og vedlikeholde individuelle komponenter (DevOps.com, 2023).
+  Mikrotjenestenes modulære natur gjør det mulig for team å ha tydelig definert eierskap over spesifikke tjenester, noe som gjør det enklere å administrere og vedlikeholde individuelle komponenter (Maayan, 2023).
 - **Forutsigbar ressursallokering**:  
-  I motsetning til serverless opererer mikrotjenester på dedikert infrastruktur, noe som lar DevOps-team forutsi kostnader og kontrollere ressursutnyttelse mer effektivt (DevOps.com, 2023).
+  I motsetning til serverless opererer mikrotjenester på dedikert infrastruktur, noe som lar DevOps-team forutsi kostnader og kontrollere ressursutnyttelse mer effektivt (Maayan, 2023).
 
 ### Ulemper:
 - **Økt operasjonell belastning**:  
-  Behovet for å administrere infrastruktur og opprettholde pipelines for flere mikrotjenester øker den operasjonelle belastningen på DevOps-team (DevOps.com, n.d., Simform, n.d., DevOps.com, 2023).
+  Behovet for å administrere infrastruktur og opprettholde pipelines for flere mikrotjenester øker den operasjonelle belastningen på DevOps-team (Maayan, 2024, Dhabuk, 2022, Maayan, 2023).
 - **Orkestreringsutfordringer**:  
-  Skalering av mikrotjenester krever ofte manuell innsats eller komplekse orkestreringssystemer, noe som kan føre til langsommere responstider sammenlignet med serverless (DevOps.com, n.d., DevOps.com, 2023).
+  Skalering av mikrotjenester krever ofte manuell innsats eller komplekse orkestreringssystemer, noe som kan føre til langsommere responstider sammenlignet med serverless (Maayan, 2024, Maayan, 2023).
 - **Utvidet ansvarsområde**:  
-  DevOps-team er ansvarlige for hele livssyklushåndteringen, inkludert klargjøring, skalering og sikkerhet. Dette kan være ressurskrevende og utfordrende å vedlikeholde på tvers av distribuerte tjenester (DevOps.com, 2023).
+  DevOps-team er ansvarlige for hele livssyklushåndteringen, inkludert klargjøring, skalering og sikkerhet. Dette kan være ressurskrevende og utfordrende å vedlikeholde på tvers av distribuerte tjenester (Maayan, 2023).
 
 ---
 
@@ -363,9 +363,9 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 - Serverless Framework. (n.d.). Monitoring Guide. Serverless Framework. https://www.serverless.com/framework/docs/guides/dashboard/monitoring
 - Faruqui, Z. (2024, September 18). Serverless Monitoring: 7 Best Practices. With Coherence. https://www.withcoherence.com/articles/serverless-monitoring-7-best-practices-2024
 
-- DevOps.com. (n.d.). 5 Serverless Challenges of DevOps Teams and How to Overcome Them. DevOps.com. https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/
-- Simform. (n.d.). DevOps Best Practices for Serverless. Simform Blog. https://www.simform.com/blog/devops-best-practices-for-serverless/
-- DevOps.com. (2023, February 15). Running Serverless in Production: 7 Best Practices for DevOps. DevOps.com. https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
+- MAAYAN, G,D. (2024.26.21) 5 Serverless Challenges of DevOps Teams and How to Overcome Them. DevOps.com. https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/
+- Dhaduk, D. (2022.08.10). DevOps Best Practices for Serverless. Simform Blog. https://www.simform.com/blog/devops-best-practices-for-serverless/
+- MAAYAN, G,D. (2023, February 15). Running Serverless in Production: 7 Best Practices for DevOps. DevOps.com. https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 
 
 
