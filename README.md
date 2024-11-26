@@ -194,13 +194,13 @@ aws lambda update-event-source-mapping \
 
 ## Serverless i CI/CD
 
-Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse utrullinger (Dewan, 2024). Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter (Dewan, 2024).
+Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse deployeringer (Dewan, 2024). Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter (Dewan, 2024).
 
 ### Fordeler:
 - **Automatisering og forenkling**:  
-  Serverless forbedrer automatisering ved å integrere med CI/CD-pipelines for å utløse bygg, tester og utrullinger ved kodeendringer(Dewan, 2024).
+  Serverless forbedrer automatisering ved å integrere med CI/CD-pipelines for å utløse bygg, tester og deployeringer ved kodeendringer(Dewan, 2024).
 - **Raske iterasjoner**:  
-  Automatisert testing og utrulling i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen (Dewan, 2024).
+  Automatisert testing og deploying i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen (Dewan, 2024).
 
 ### Ulemper:
 - **Pipeline-tilpasning**:  
@@ -212,11 +212,11 @@ Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere 
 
 ## Mikrotjenester i CI/CD
 
-Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av deres modulære natur, som tillater uavhengig utrulling av tjenester (Lybeck, 2018). Imidlertid introduserer den distribuerte naturen til mikrotjenester operasjonell kompleksitet.
+Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av deres modulære natur, som tillater uavhengig deploying av tjenester (Lybeck, 2018). Imidlertid introduserer den distribuerte naturen til mikrotjenester operasjonell kompleksitet.
 
 ### Fordeler:
 - **Detaljert kontroll**:  
-  Mikrotjenestenes modulære design støtter isolert testing og utrulling, noe som sikrer stabilitet for andre deler av systemet.
+  Mikrotjenestenes modulære design støtter isolert testing og deploying, noe som sikrer stabilitet for andre deler av systemet.
 - **Tradisjonell kompatibilitet**:  
   Eksisterende CI/CD-pipelines kan ofte gjenbrukes med minimale justeringer for containerbaserte mikrotjenester.
 
@@ -234,18 +234,18 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
 
 #### Fordeler:
 - **Effektive overvåkningsverktøy**:  
-  Plattformspesifikke verktøy som Serverless Framework og AWS Lambda gir omfattende metrikker, spor, logger og feilmeldinger(Serverless Framework, n.d.). Distribuerte sporingsverktøy som AWS X-Ray og OpenTelemetry gir innsikt i forsinkelser og samhandling mellom tjenester(Faruqui, 2024
+  Plattformspesifikke verktøy som Serverless Framework og AWS Lambda gir grundige metrikker, spor, logger og feilmeldinger(Serverless Framework, 2024). Distribuerte sporingsverktøy som AWS X-Ray og OpenTelemetry gir innsikt i forsinkelser og samhandling mellom tjenester(Faruqui, 2024
 ).
 - **Enkel oppsett**:  
-  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor(Serverless Framework, n.d.). Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler aggregering av kortvarige funksjonslogger(Faruqui, 2024).
+  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor(Serverless Framework, 2024). Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler gruppering av kortvarige funksjonslogger(Faruqui, 2024).
 
 #### Utfordringer:
 - **Økt kompleksitet i logging og feilsøking**:  
-  Kortvarige funksjoner gjør det utfordrende å opprettholde loggingskontekster på tvers av flere kall. Krever standardiserte loggingsformater og sentraliserte aggregeringsverktøy(Serverless Framework, n.d., Faruqui, 2024).
+  Kortvarige funksjoner gjør det utfordrende å opprettholde loggingskontekster på tvers av flere kall. Krever standardiserte loggingsformater og sentraliserte grupperingsverktøy(Serverless Framework, 2024, Faruqui, 2024).
 - **Spredt overvåkningskontekst**:  
-  Applikasjoner deles opp i mange små funksjoner, noe som kan skape utfordringer i distribuert logging. Overvåkning krever separate oppsett for hundrevis av funksjoner(Serverless Framework, n.d.).
+  Applikasjoner deles opp i mange små funksjoner, dette kan  skape utfordringer i distribuert logging. Overvåkning krever separate oppsett for hundrevis av funksjoner(Serverless Framework, 2024).
 - **Overvåkning av "cold starts"**:  
-  "Cold starts" introduserer latens som påvirker brukeropplevelsen. Spesifikke verktøy må brukes for å spore og måle disse forsinkelsene(Faruqui, 2024).
+  "Cold starts" introduserer latens som påvirker brukeropplevelsen. for å spore og måle disse forsinkelsene trengs det spesille verktøy(Faruqui, 2024).
 ---
 
 ### Mikrotjenester Arkitektur
@@ -324,7 +324,7 @@ I en serverless-tilnærming blir mange operasjonelle oppgaver overført til skyl
 - **Kompleks rolle- og tillatelseshåndtering**:  
    Å tildele riktige roller til mange serverless-funksjoner skaper kompleksitet og øker risikoen for feilkonfigurasjoner, noe som kan føre til sikkerhetsproblemer eller ineffektivitet (Maayan, 2023).
 - **Utfordringer med kortvarige funksjoner**:  
-  Den tilstandsfrie og kortvarige naturen til serverless-funksjoner kompliserer feilsøking og krever stor avhengighet av sentraliserte overvåkningsverktøy, noe som legger til et ekstra lag av ansvar for observabilitet (Maayan, 2024, Dhabuk, 2022).
+  Den tilstandsfrie og kortvarige egenskapen til serverless-funksjoner kompliserer feilsøking og krever stor avhengighet av sentraliserte overvåkningsverktøy, noe som legger til et ekstra lag av ansvar for observabilitet (Maayan, 2024, Dhabuk, 2022).
 - **Uforutsigbare kostnader**:  
   Selv om serverless eliminerer faste infrastrukturkostnader, kan dynamisk skalering gjøre kostnadsstyring utfordrende. DevOps-team må ta eierskap for å overvåke og optimalisere bruken for å unngå budsjettoverskridelser (Maayan, 2024, Maayan, 2023).
 
@@ -338,15 +338,15 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 - **Klare eierskapsgrenser**:  
   Mikrotjenestenes modulære natur gjør det mulig for team å ha tydelig definert eierskap over spesifikke tjenester, noe som gjør det enklere å administrere og vedlikeholde individuelle komponenter (Maayan, 2023).
 - **Forutsigbar ressursallokering**:  
-  I motsetning til serverless opererer mikrotjenester på dedikert infrastruktur, noe som lar DevOps-team forutsi kostnader og kontrollere ressursutnyttelse mer effektivt (Maayan, 2023).
+  I motsetning til serverless opererer mikrotjenester på dedikert infrastruktur, noe som lar DevOps-team forutsi kostnader og kontroller ressurs bruken mer effektivt (Maayan, 2023).
 
 ### Ulemper:
 - **Økt operasjonell belastning**:  
   Behovet for å administrere infrastruktur og opprettholde pipelines for flere mikrotjenester øker den operasjonelle belastningen på DevOps-team (Maayan, 2024, Dhabuk, 2022, Maayan, 2023).
 - **Orkestreringsutfordringer**:  
-  Skalering av mikrotjenester krever ofte manuell innsats eller komplekse orkestreringssystemer, noe som kan føre til langsommere responstider sammenlignet med serverless (Maayan, 2024, Maayan, 2023).
+  Skalering av mikrotjenester krever ofte manuell innsats eller komplekse orkestreringssystemer, dette kan føre til tregere responstid enn serverless (Maayan, 2024, Maayan, 2023).
 - **Utvidet ansvarsområde**:  
-  DevOps-team er ansvarlige for hele livssyklushåndteringen, inkludert klargjøring, skalering og sikkerhet. Dette kan være ressurskrevende og utfordrende å vedlikeholde på tvers av distribuerte tjenester (Maayan, 2023).
+  DevOps-team er ansvarlige for hele livssyklushåndteringen, inkludert klargjøring, skalering og sikkerhet. Dette kan være krevende og vanskelig å håndtere på tvers av distribuerte tjenester. (Maayan, 2023).
 
 ---
 
@@ -360,7 +360,7 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 
 - Lybeck, J. (2018, September 24). Serverless: Et paradigmeskifte i systemutvikling. Medium. https://medium.com/@jorgenlybeck/serverless-et-paradigmeskifte-i-systemutvikling-556a24fb9bd6
 
-- Serverless Framework. (n.d.). Monitoring Guide. Serverless Framework. https://www.serverless.com/framework/docs/guides/dashboard/monitoring
+- Serverless Framework. (2024). Monitoring Guide. Serverless Framework. https://www.serverless.com/framework/docs/guides/dashboard/monitoring
 - Faruqui, Z. (2024, September 18). Serverless Monitoring: 7 Best Practices. With Coherence. https://www.withcoherence.com/articles/serverless-monitoring-7-best-practices-2024
 
 - MAAYAN, G,D. (2024.26.21) 5 Serverless Challenges of DevOps Teams and How to Overcome Them. DevOps.com. https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/
