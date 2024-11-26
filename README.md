@@ -91,40 +91,126 @@ aws sqs send-message \
 ### leveranse oppgave 2:
 
 - **Lenke til terraform plan workflow (non-main branch)**: 
-- https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173
+https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173
 
 - **Lenke til terraform apply workflow (main branch)**: 
-- https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
+https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
 
 ### SQS Queue URL for image-gen-queue-26
 ```
 https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
 ```
 
+# Oppgave 3 A & B
+
+## bygge jave koden som en JAR-fil:
+```bash
+cd devops-exam-26/java_sqs_client
+mvn package
+```
+
+###sette variablen for SQS-queue url og kjør jar filen:
+```bash
+export SQS_QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
+java -jar target/imagegenerator-0.0.1-SNAPSHOT.jar "Me on top of K2"
+```
+
+### hvis aws keys er nødvendig erstatt XXX og YYY med aws keys:
+```bash
+export AWS_ACCESS_KEY_ID= XXX
+export AWS_SECRET_ACCESS_KEY= YYY
+export SQS_QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26
+java -jar target/imagegenerator-0.0.1-SNAPSHOT.jar "Me on top of K2"
+```
+
+###
+
+```bash
+docker run \
+    -e AWS_ACCESS_KEY_ID=xxx \
+    -e AWS_SECRET_ACCESS_KEY=yyy \
+    -e SQS_QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26 \
+    ezzoali/imagegenerator-client:latest "Me on top of a pyramid"
+```
+
+### leveranse for oppgave 3 A & B:
+
+### valgte dockertaggen `latest`:
+- For mitt Docker-image har jeg bestemt meg for å velge `latest` som tag. Dette sikrer at man alltid har tilgang til den nyeste versjonen av klienten, uten å måtte velge en spesifikk versjon. I tillegg står det i Docker-dokumentasjonen at taggen `latest` er standardtaggen, noe som gjør den enklere å bruke.
+
+### image-navnet fra min dockerhub konto:
+
+- med latest taggen:
+```bash
+ezzoali/java-sqs-client:latest
+```
+-uten latest taggen:
+```bash
+ezzoali/java-sqs-client
+```
+
+## leveranse for oppgave 4:
+
+### først endre email placeholder i:
+
+```
+devops-exam-26/infra/terraform.tfvars
+```
+
+
+### slå av event sourch mapping:
+
+```bash
+aws lambda update-event-source-mapping \
+  --uuid 581928cf-635d-443f-b3b5-2ef20d491f97 \
+  --no-enabled \
+  --output json
+```
+### test applicationen SQS:
+```
+aws sqs send-message \
+    --queue-url https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26 \
+    --message-body '{
+        "title": "Sunset Safari",
+        "description": "Place me in a jeep on an African savanna with lions and elephants in the background under a golden sunset. Use an analog 1980s photo effect with warm color tones, and give it a grainy texture for an authentic safari experience."
+    }' \
+    --output json
+```
+
+### slå på event sourch mapping:
+
+```bash
+aws lambda update-event-source-mapping \
+  --uuid 581928cf-635d-443f-b3b5-2ef20d491f97 \
+  --enabled \
+  --output json
+```
+
+
 
 # Automatisering og kontinuerlig levering (CI/CD)
 
 ## Serverless i CI/CD
 
-Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse utrullinger. Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter.
+Serverless tilbyr en strømlinjeformet opplevelse for CI/CD ved å automatisere nøkkelprosesser i utviklingslivssyklusen, redusere driftsbelastning og muliggjøre sømløse utrullinger (Harness, n.d.). Imidlertid kan integrering av serverless i tradisjonelle CI/CD-pipelines kreve tilpasning til dens hendelsesdrevne og skyspesifikke arbeidsflyter (Harness, n.d.).
 
 ### Fordeler:
 - **Automatisering og forenkling**:  
-  Serverless forbedrer automatisering ved å integrere med CI/CD-pipelines for å utløse bygg, tester og utrullinger ved kodeendringer, noe som akselererer utgivelsessykluser betydelig.
+  Mikrotjenestenes modulære design støtter isolert testing og utrulling, noe som sikrer stabilitet for andre deler av systemet (Lybeck, 2018).
 - **Raske iterasjoner**:  
-  Automatisert testing og utrulling i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen.
+  Automatisert testing og utrulling i serverless-pipelines forbedrer pålitelighet og hastighet i programvareleveransen (Harness, n.d.).
 
 ### Ulemper:
 - **Pipeline-tilpasning**:  
-  Tilpasning av CI/CD-pipelines for serverless kan introdusere utfordringer, spesielt når det gjelder integrering med hendelsesdrevne, skyspesifikke plattformer.
+  Tilpasning av CI/CD-pipelines for serverless kan introdusere utfordringer, spesielt når det gjelder integrering med hendelsesdrevne, skyspesifikke plattformer (Harness, n.d.).
 - **Risiko for hot patching**:  
-  Den enkle muligheten til å modifisere serverless-funksjoner direkte i produksjon kan føre til at strukturerte CI/CD-praksiser omgås, noe som kan resultere i inkonsekvenser.
+  Eksisterende CI/CD-pipelines kan ofte gjenbrukes med minimale justeringer for containerbaserte mikrotjenester (Lybeck, 2018).
 
 ---
 
 ## Mikrotjenester i CI/CD
 
-Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av deres modulære natur, som tillater uavhengig utrulling av tjenester. Imidlertid introduserer den distribuerte naturen til mikrotjenester operasjonell kompleksitet.
+Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av deres modulære natur, som tillater uavhengig utrulling av tjenester (Lybeck, 2018). Imidlertid introduserer den distribuerte naturen til mikrotjenester operasjonell kompleksitet.
 
 ### Fordeler:
 - **Detaljert kontroll**:  
@@ -134,9 +220,9 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
 
 ### Ulemper:
 - **Operasjonell belastning**:  
-  Å opprettholde separate CI/CD-pipelines for flere mikrotjenester øker kompleksiteten og krever robust koordinering.
+  Å opprettholde separate CI/CD-pipelines for flere mikrotjenester øker kompleksiteten og krever robust koordinering (Harness, n.d., Lybeck, 2018).  
 - **Begrenset skalerbarhet**:  
-  Skalering av mikrotjenesteinfrastruktur er mindre dynamisk sammenlignet med serverless, noe som potensielt kan bremse CI/CD-prosesser under høy etterspørsel.
+  Skalering av mikrotjenesteinfrastruktur er mindre dynamisk sammenlignet med serverless, noe som potensielt kan bremse CI/CD-prosesser under høy etterspørsel (Lybeck, 2018).
 
 ---
 
@@ -146,25 +232,25 @@ Mikrotjenester passer godt med tradisjonelle CI/CD-tilnærminger på grunn av de
 
 ### Serverless Arkitektur
 
-Serverless-arkitekturer introduserer nye paradigmer for overvåkning og logging, samtidig som de gir fordeler som enklere oppsett og kostnadseffektive løsninger. Imidlertid fører den kortvarige og statsløse naturen til utfordringer innen feilsøking og logging.
-
 #### Fordeler:
 - **Effektive overvåkningsverktøy**:  
-  Plattformspesifikke verktøy som Serverless Framework og AWS Lambda gir omfattende metrikker, spor, logger og feilmeldinger. Distribuerte sporingsverktøy som AWS X-Ray og OpenTelemetry gir innsikt i forsinkelser og samhandling mellom tjenester.
+  Plattformspesifikke verktøy som Serverless Framework og AWS Lambda gir omfattende metrikker, spor, logger og feilmeldinger(Serverless Framework, n.d.). Distribuerte sporingsverktøy som AWS X-Ray og OpenTelemetry gir innsikt i forsinkelser og samhandling mellom tjenester(Faruqui, 2024
+).
 - **Enkel oppsett**:  
-  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor. Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler aggregering av kortvarige funksjonslogger.
+  Automatisert instrumentering, inkludert IAM-rolleintegrasjon og Lambda-lag, forenkler oppsamling av logger og spor(Serverless Framework, n.d.). Sentralisert logging gjennom verktøy som AWS CloudWatch forenkler aggregering av kortvarige funksjonslogger(Faruqui, 2024
+).
 - **Kostnadseffektivitet gjennom prøvetaking**:  
-  Automatisk prøvetaking av sporingsdata optimaliserer overvåkningskostnader, spesielt for funksjoner med høy trafikk.
+  Automatisk prøvetaking av sporingsdata optimaliserer overvåkningskostnader, spesielt for funksjoner med høy trafikk(Serverless Framework, n.d.).
 
 #### Utfordringer:
 - **Økt kompleksitet i logging og feilsøking**:  
-  Kortvarige funksjoner gjør det utfordrende å opprettholde loggingskontekster på tvers av flere kall. Krever standardiserte loggingsformater og sentraliserte aggregeringsverktøy.
+  Kortvarige funksjoner gjør det utfordrende å opprettholde loggingskontekster på tvers av flere kall. Krever standardiserte loggingsformater og sentraliserte aggregeringsverktøy(Serverless Framework, n.d., Faruqui, 2024).
 - **Spredt overvåkningskontekst**:  
-  Applikasjoner deles opp i mange små funksjoner, noe som kan skape utfordringer i distribuert logging. Overvåkning krever separate oppsett for hundrevis av funksjoner.
+  Applikasjoner deles opp i mange små funksjoner, noe som kan skape utfordringer i distribuert logging. Overvåkning krever separate oppsett for hundrevis av funksjoner(Serverless Framework, n.d.).
 - **Overvåkning av "cold starts"**:  
-  "Cold starts" introduserer latens som påvirker brukeropplevelsen. Spesifikke verktøy må brukes for å spore og måle disse forsinkelsene.
+  "Cold starts" introduserer latens som påvirker brukeropplevelsen. Spesifikke verktøy må brukes for å spore og måle disse forsinkelsene(Faruqui, 2024).
 - **Avhengighet av plattformspesifikke verktøy**:  
-  Plattformverktøy kan være vanskelig å integrere med eksterne løsninger og migrasjon til andre plattformer.
+  Plattformverktøy kan være vanskelig å integrere med eksterne løsninger og migrasjon til andre plattformer(Serverless Framework, n.d., Faruqui, 2024).
 
 ---
 
@@ -174,15 +260,15 @@ Mikrotjenester er modulære og uavhengige, noe som gir mer strukturert overvåkn
 
 #### Fordeler:
 - **Strukturert overvåkning**:  
-  Mikrotjenester benytter containere med en veldefinert livssyklus, noe som gjør integrasjon med eksisterende overvåkningsverktøy enklere. Tradisjonelle loggings- og overvåkningsarbeidsflyter kan brukes på nytt.
+  Mikrotjenester benytter containere med en veldefinert livssyklus, noe som gjør integrasjon med eksisterende overvåkningsverktøy enklere. Tradisjonelle loggings- og overvåkningsarbeidsflyter kan brukes på nytt(Faruqui, 2024).
 - **Komponentbasert feilsøking**:  
-  Isolert logging og feilsøking på tvers av uavhengige tjenester. Modulenes uavhengighet sikrer at problemer kan isoleres uten å påvirke hele systemet.
+  Isolert logging og feilsøking på tvers av uavhengige tjenester. Modulenes uavhengighet sikrer at problemer kan isoleres uten å påvirke hele systemet(Faruqui, 2024).
 
 #### Utfordringer:
 - **Operasjonell kompleksitet**:  
-  Krever separate overvåkningsoppsett for hver tjeneste, noe som øker administrasjonsbelastningen. Spor og logger må samles og aggregeres fra flere kilder.
+  Krever separate overvåkningsoppsett for hver tjeneste, noe som øker administrasjonsbelastningen. Spor og logger må samles og aggregeres fra flere kilder(Faruqui, 2024).
 - **Ressursadministrasjonsbelastning**:  
-  Mikrotjenester krever dedikert infrastruktur, noe som øker kostnadene og administrativ kompleksitet. Overvåkningsløsninger må kontinuerlig justeres under høy trafikk.
+  Mikrotjenester krever dedikert infrastruktur, noe som øker kostnadene og administrativ kompleksitet. Overvåkningsløsninger må kontinuerlig justeres under høy trafikk(Faruqui, 2024).
 
 ---
 
@@ -190,37 +276,37 @@ Mikrotjenester er modulære og uavhengige, noe som gir mer strukturert overvåkn
 
 ## Serverless
 
-Serverless utmerker seg med dynamisk skalering og kostnadseffektivitet, noe som gjør det ideelt for applikasjoner med varierende arbeidsbelastninger. Modellen introduserer imidlertid utfordringer som uforutsigbare kostnader og kaldstartlatens.
+Serverless utmerker seg med dynamisk skalering og kostnadseffektivitet, noe som gjør det ideelt for applikasjoner med varierende arbeidsbelastninger (Harness, n.d.). Modellen introduserer imidlertid utfordringer som uforutsigbare kostnader og kaldstartlatens (Harness, n.d.).
 
 ### Fordeler:
 - **Dynamisk skalering**:  
-  Serverless justerer seg automatisk til endringer i arbeidsbelastning, noe som sikrer effektiv ressursbruk uten manuell inngripen.
+  Serverless justerer seg automatisk til endringer i arbeidsbelastning, noe som sikrer effektiv ressursbruk uten manuell inngripen (Harness, n.d., Lybeck, 2018).
 - **Kostnadseffektivitet**:  
-  Betal-for-bruk-prising eliminerer utgifter til inaktiv infrastruktur, noe som tilpasser kostnadene til faktisk bruk.
+  Betal-for-bruk-prising eliminerer utgifter til inaktiv infrastruktur, noe som tilpasser kostnadene til faktisk bruk (Harness, n.d., Lybeck, 2018).
 
 ### Ulemper:
 - **Uforutsigbare kostnader**:  
-  Autoskalering kan føre til svingende utgifter, noe som utfordrer utviklere til å holde budsjettet under kontroll.
+  Autoskalering kan føre til svingende utgifter, noe som utfordrer utviklere til å holde budsjettet under kontroll (Harness, n.d.).
 - **Kaldstartlatens**:  
-  Serverless-funksjoner kan oppleve forsinkelser under oppstart, noe som påvirker ytelsen for tidskritiske oppgaver.
-
+  Serverless-funksjoner kan oppleve forsinkelser under oppstart, noe som påvirker ytelsen for tidskritiske oppgaver (Harness, n.d.).
+  
 ---
 
 ## Mikrotjenester
 
-Mikrotjenester gir presis kontroll over ressursallokering og forutsigbare driftskostnader, men de er mindre smidige i skalering sammenlignet med serverless-arkitekturer.
+Mikrotjenester gir presis kontroll over ressursallokering og forutsigbare driftskostnader, men de er mindre smidige i skalering sammenlignet med serverless-arkitekturer (Harness, n.d., Lybeck, 2018).
 
 ### Fordeler:
 - **Kontrollert ressursallokering**:  
-  Ressurser kan tilpasses hver tjenestes behov, noe som optimaliserer ytelse og kostnader.
+  Ressurser kan tilpasses hver tjenestes behov, noe som optimaliserer ytelse og kostnader (Harness, n.d., Lybeck, 2018).
 - **Forutsigbare kostnader**:  
-  Forhåndskonfigurert infrastruktur sikrer konsistente utgifter og unngår uforutsigbare serverless-kostnader.
+  Forhåndskonfigurert infrastruktur sikrer konsistente utgifter og unngår uforutsigbare serverless-kostnader (Harness, n.d.).
 
 ### Ulemper:
 - **Manuell skalering**:  
-  Skalering av mikrotjenester krever manuell innsats eller kompleks orkestrering, noe som gjør dem mindre responsive til plutselige trafikkøkninger.
+  Skalering av mikrotjenester krever manuell innsats eller kompleks orkestrering, noe som gjør dem mindre responsive til plutselige trafikkøkninger (Harness, n.d., Lybeck, 2018).
 - **Høyere infrastrukturkostnader**:  
-  Å opprettholde infrastruktur for kontinuerlig kjørende tjenester kan føre til høyere grunnkostnader sammenlignet med serverless.
+  Å opprettholde infrastruktur for kontinuerlig kjørende tjenester kan føre til høyere grunnkostnader sammenlignet med serverless (Lybeck, 2018).
 
 ---
 
@@ -234,19 +320,19 @@ I en serverless-tilnærming blir mange operasjonelle oppgaver overført til skyl
 
 ### Fordeler:
 - **Redusert operasjonell belastning**:  
-  Skyleverandøren tar seg av serverklargjøring, vedlikehold og skalering, noe som lar DevOps-teamet fokusere på applikasjonslogikk og ytelse.
+  I serverless tar skyleverandøren ansvar for infrastrukturhåndtering, inkludert serverklargjøring, vedlikehold og skalering. Dette frigjør DevOps-team til å fokusere på forretningslogikk og applikasjonsytelse (DevOps.com, n.d., DevOps.com, 2023).
 - **Granulært ansvar**:  
-  Individuelle funksjoner håndteres separat med minimal tilgang, i tråd med prinsippet om minst privilegium. Dette forbedrer sikkerheten og begrenser påvirkningen av potensielle feil.
+  Serverless-arkitektur oppmuntrer team til å håndtere individuelle funksjoner med minimal nødvendige roller, i tråd med prinsippet om minst privilegium. Dette forbedrer sikkerheten og isolerer problemer til spesifikke funksjoner (DevOps.com, 2023).
 - **Bedret samarbeid og CI/CD-integrasjon**:  
-  Automatisering av serverless-pipelines reduserer tiden brukt på infrastrukturadministrasjon og støtter en modell med delt ansvar på tvers av team.
+   Automatisering i serverless-pipelines lar utviklere konsentrere seg om å utvikle funksjonalitet i stedet for å administrere infrastruktur. Dette tilrettelegger for en modell med delt eierskap på tvers av team (Simform, n.d.).
 
 ### Ulemper:
 - **Kompleks rolle- og tillatelseshåndtering**:  
-  Å tildele riktige roller til mange små funksjoner kan være komplekst og risikere feilkonfigurasjoner, noe som kan føre til sikkerhetsbrudd eller ineffektiv drift.
+   Å tildele riktige roller til mange serverless-funksjoner skaper kompleksitet og øker risikoen for feilkonfigurasjoner, noe som kan føre til sikkerhetsproblemer eller ineffektivitet (DevOps.com, 2023).
 - **Utfordringer med kortvarige funksjoner**:  
-  Tilstandsfrie funksjoner krever avhengighet av sentralisert overvåkningsverktøy for feilsøking og observabilitet, noe som legger til et ekstra lag av kompleksitet.
+  Den tilstandsfrie og kortvarige naturen til serverless-funksjoner kompliserer feilsøking og krever stor avhengighet av sentraliserte overvåkningsverktøy, noe som legger til et ekstra lag av ansvar for observabilitet (DevOps.com, n.d., Simform, n.d.).
 - **Uforutsigbare kostnader**:  
-  Dynamisk skalering kan føre til varierende kostnader, og DevOps-team må kontinuerlig overvåke og optimalisere bruken for å unngå budsjettoverskridelser.
+  Selv om serverless eliminerer faste infrastrukturkostnader, kan dynamisk skalering gjøre kostnadsstyring utfordrende. DevOps-team må ta eierskap for å overvåke og optimalisere bruken for å unngå budsjettoverskridelser (DevOps.com, n.d., DevOps.com, 2023).
 
 ---
 
@@ -256,17 +342,17 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 
 ### Fordeler:
 - **Klare eierskapsgrenser**:  
-  Den modulære arkitekturen til mikrotjenester gjør det enklere for team å ha spesifikt ansvar for enkelte tjenester, noe som forenkler administrasjon og vedlikehold.
+  Mikrotjenestenes modulære natur gjør det mulig for team å ha tydelig definert eierskap over spesifikke tjenester, noe som gjør det enklere å administrere og vedlikeholde individuelle komponenter (DevOps.com, 2023).
 - **Forutsigbar ressursallokering**:  
-  Dedikert infrastruktur gir teamet mulighet til å forutsi ressursbruk og kostnader, noe som gir bedre kontroll over budsjetter.
+  I motsetning til serverless opererer mikrotjenester på dedikert infrastruktur, noe som lar DevOps-team forutsi kostnader og kontrollere ressursutnyttelse mer effektivt (DevOps.com, 2023).
 
 ### Ulemper:
 - **Økt operasjonell belastning**:  
-  Administrasjon av infrastruktur og opprettholdelse av pipelines for flere mikrotjenester kan kreve betydelig tid og ressurser fra DevOps-teamet.
+  Behovet for å administrere infrastruktur og opprettholde pipelines for flere mikrotjenester øker den operasjonelle belastningen på DevOps-team (DevOps.com, n.d., Simform, n.d., DevOps.com, 2023).
 - **Orkestreringsutfordringer**:  
-  Skalering av mikrotjenester krever ofte manuell innsats eller avanserte orkestreringsverktøy, noe som kan forsinke responstider.
+  Skalering av mikrotjenester krever ofte manuell innsats eller komplekse orkestreringssystemer, noe som kan føre til langsommere responstider sammenlignet med serverless (DevOps.com, n.d., DevOps.com, 2023).
 - **Utvidet ansvarsområde**:  
-  DevOps-teamet har ansvar for hele livssyklushåndteringen, inkludert sikkerhet, klargjøring og skalering, noe som kan være ressurskrevende.
+  DevOps-team er ansvarlige for hele livssyklushåndteringen, inkludert klargjøring, skalering og sikkerhet. Dette kan være ressurskrevende og utfordrende å vedlikeholde på tvers av distribuerte tjenester (DevOps.com, 2023).
 
 ---
 
@@ -275,60 +361,22 @@ Mikrotjeneste-tilnærmingen gir DevOps-teamet mer kontroll over infrastruktur og
 **Serverless** reduserer operasjonelle oppgaver ved å flytte mye ansvar til skyleverandøren, men gir utfordringer med observabilitet og kostnadskontroll. **Mikrotjenester** gir mer kontroll og forutsigbarhet, men krever betydelig innsats for å håndtere infrastrukturen. Valget mellom serverless og mikrotjenester bør baseres på teamets kapasitet, systemets kompleksitet og applikasjonens krav.
 
 
-kilder:
-https://www.harness.io/blog/cicd-for-serverless (oppg 1 og 3)
+### referanser:
+- Harness. (n.d.). CI/CD for Serverless. Harness Blog. https://www.harness.io/blog/cicd-for-serverless
 
-https://www.serverless.com/framework/docs/guides/dashboard/monitoring (oppgave 2)
-https://www.withcoherence.com/articles/serverless-monitoring-7-best-practices-2024 (oppgave 2)
+- Lybeck, J. (2018, September 24). Serverless: Et paradigmeskifte i systemutvikling. Medium. https://medium.com/@jorgenlybeck/serverless-et-paradigmeskifte-i-systemutvikling-556a24fb9bd6
 
-https://medium.com/@jorgenlybeck/serverless-et-paradigmeskifte-i-systemutvikling-556a24fb9bd6 (oppgave 1 og 3)
+- Serverless Framework. (n.d.). Monitoring Guide. Serverless Framework. https://www.serverless.com/framework/docs/guides/dashboard/monitoring
+- Faruqui, Z. (2024, September 18). Serverless Monitoring: 7 Best Practices. With Coherence. https://www.withcoherence.com/articles/serverless-monitoring-7-best-practices-2024
 
-https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/?utm_source=chatgpt.com (oppgave 4)
-https://www.simform.com/blog/devops-best-practices-for-serverless/?utm_source=chatgpt.com (oppgave 4)
-https://devops.com/running-serverless-in-production-7-best-practices-for-devops/?utm_source=chatgpt.com (oppgave 4)
-
-
+- DevOps.com. (n.d.). 5 Serverless Challenges of DevOps Teams and How to Overcome Them. DevOps.com. https://devops.com/5-serverless-challenges-of-devops-teams-and-how-to-overcome-them/
+- Simform. (n.d.). DevOps Best Practices for Serverless. Simform Blog. https://www.simform.com/blog/devops-best-practices-for-serverless/
+- DevOps.com. (2023, February 15). Running Serverless in Production: 7 Best Practices for DevOps. DevOps.com. https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 
 
 
 
-## task 3a
-##task 3b
-###begrunnelse
-- For mitt Docker-image har jeg bestemt meg for å velge latest som tag. Dette sikrer at man alltid har tilgang til den nyeste versjonen av klienten, uten å måtte velge en spesifikk versjon. I tillegg står det i Docker-dokumentasjonen at taggen latest er standardtaggen, noe som gjør den enklere å bruke.
-- url til github workflow: https://github.com/EzzoAli/devops-exam-26/actions/runs/11965712974
-- Docker Hub Image: ezzoali/java-sqs-client:latest
-- **SQS Queue URL**: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`
-- 
 
-## 
-
-
-## oppgave 1
-### Oppgave 1a: AWS Lambda og API Gateway
-- **API Gateway URL**: https://s7u83tlgy1.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
-- **generert bilde: 26/titan_1932720648.png**
-### Oppgave 1b: GitHub Actions Workflow for SAM Deploy
-- **Lenke til workflow**: [Se workflow-kjøring](https://github.com/EzzoAli/devops-exam-26/actions/runs/11900918322/job/33162795154)
-
-### Deliverables
-- **Lambda Function ARN**: `arn:aws:lambda:eu-west-1:244530008913:function:image-gen-lambda-26`
-- **SQS Queue URL**: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`
-- **generert bilde: 26/images/titan_1821139106.png**
-
-## Task 2B: GitHub Actions Workflow for Terraform
-### Deliverables
-- **Terraform Apply Workflow (main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11945111658/job/33297209272
-- **Terraform Plan Workflow (non-main branch)**: https://github.com/EzzoAli/devops-exam-26/actions/runs/11964862446/job/33357904173
-- **SQS Queue URL**: [https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26](https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26)
-
-
-##task 3
-###begrunnelse
-- For mitt Docker-image har jeg bestemt meg for å velge latest som tag. Dette sikrer at man alltid har tilgang til den nyeste versjonen av klienten, uten å måtte velge en spesifikk versjon. I tillegg står det i Docker-dokumentasjonen at taggen latest er standardtaggen, noe som gjør den enklere å bruke.
-- url til github workflow: https://github.com/EzzoAli/devops-exam-26/actions/runs/11965712974
-- Docker Hub Image: ezzoali/java-sqs-client:latest
-- **SQS Queue URL**: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`
 
 
 
@@ -344,6 +392,7 @@ https://devops.com/running-serverless-in-production-7-best-practices-for-devops/
 |              | SQS-Kø URL                                            | https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26                |
 | Oppgave 3    | Beskrivelse av taggestrategi                          | For mitt Docker-image har jeg bestemt meg for å velge `latest` som tag. Dette sikrer at man alltid har tilgang til den nyeste versjonen av klienten, uten å måtte velge en spesifikk versjon. I tillegg står det i Docker-dokumentasjonen at taggen `latest` er standardtaggen, noe som gjør den enklere å bruke. |
 |              | Container image + SQS URL                             | Docker Hub Image: ezzoali/java-sqs-client                                          |
+|              |                                                       | Docker Hub Image: ezzoali/java-sqs-client:latest                                   |
 |              |                                                       | SQS URL: `https://sqs.eu-west-1.amazonaws.com/244530008913/image-gen-queue-26`     |
 |              | Lenke til GitHub Actions workflow                     | https://github.com/EzzoAli/devops-exam-26/actions/runs/11965712974                 |
 
